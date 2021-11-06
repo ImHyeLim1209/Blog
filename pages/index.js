@@ -1,4 +1,15 @@
 import Head from 'next/head'
+import Link from 'next/Link'
+
+// nextJS를 쓰는 이유는 SSR과 CSR을 함께 사용하기 위함이다.
+// next/link는 모든 location.history를 핸들링한다.
+// <Link />를 사용할 경우 prefetch를 통해 페이지를 새로 고치지 않고 이동 할 수 있다.
+// 뒤로 가기를 해도 새로 고침이 되지 않는다.
+// 새로고침 = 서버에 페이지를 요청하는 것
+
+// Next.js 는 백그라운드에서 연결된 페이지에 대한 코드를 자동으로 미리 가져 옵니다. 
+// 링크를 클릭할 때쯤이면 대상 페이지의 코드가 이미 백그라운드에서 로드되고 
+// 페이지 전환이 거의 즉각적으로 이루어집니다!
 
 export default function Home() {
   return (
@@ -10,7 +21,10 @@ export default function Home() {
 
       <main>
         <h1 className="title">
-          Learn to <a href="https://nextjs.org">Next.js!</a>
+          Read{' '}
+          <Link href="/posts/first-post">
+            <a>this page!</a>
+          </Link>
         </h1>
 
         <p className="description">
