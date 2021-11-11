@@ -16,6 +16,18 @@ export async function getStaticProps() {
   }
 }
 
+// ServerSideRendering : 
+// getStaticProps() 대신 getServerSideProps(context) 을 사용하여 데이터를 가져온다.
+// 빌드할 때가 아니라, 요청을 받을 때마다 호출된다. 
+// 미리 데이터를 불러와서 페이지에 렌더링해야하는 경우 사용한다.
+// 미리 데이터를 불러올 필요가 없다면 Client Side Rendering을 쓰는 것이 낫다.
+// 추가 구성 없이는 데이터 캐싱이 안된다.
+
+// Client Sie Rendering + Pre rendering
+// 외부 데이터가 필요하지 않은 페이지 부분을 정적으로 렌더링한 후,
+// 페이지가 로드되면 클라이언트에서 데이터를 가져와서 채운다. 
+// Client에서 데이터를 가져오기 위해 SWR이라는 Hook을 제공한다. (캐싱, 재검증, 간격에 따라 다시 가져오기 등 제공)
+
 export default function Home({ allPostsData }) {
   return (
     <Layout home>
