@@ -4,6 +4,7 @@ import path from 'path';
 import {renderToString} from 'react-dom/server';
 import React from 'react';
 import App from './App';
+import { ServerStyleSheet } from 'styled-components';
 
 const app = express();
 const html = fs.readFileSync(
@@ -22,7 +23,10 @@ app.get('*', (req, res) => {
   const parseUrl = url.parse(req.url, true);
   const page = parseUrl.pathname ? parseUrl.pathname.substr(1) : 'home';
 
-  const renderString = renderToString(<App page="home" />);
+  const sheet = new ServerStyleSheet();
+  const renderString = renderToString(sheet.collectStyles(<App page="home" />));
+    const styles = sheet.getStyleTags();
+
   const initialData = { page };
   const result = html
     .replace('<div id="root"></div>', `<div id="root">${renderString}</div>`)

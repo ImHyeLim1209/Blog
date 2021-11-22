@@ -20,3 +20,8 @@
 ## babel plugin/preset
  - Client : @babel/preset-react, @babel/preset-env(구 브라우저 지원)
  - Server : @babel/preset-react, @babel/plugin-transform-moduels/commonjs
+
+## Style in SSR
+ - CSS 파일을 별도로 작성 후 HTML 파일에 연결 하면 특별히 고려할 것은 없음
+ - css-module, css-in-js 는 JS 코드가 실행되면서 스타일 코드가 돔에 삽입되므로 별도 처리 필요
+   - 서버에는 돔이 없으므로 별도의 작업이 필요하다.
