@@ -9,7 +9,7 @@ const app = express();
 const html = fs.readFileSync(
   path.resolve(__dirname, '../dist/index.html'),
   'utf8'
-;)
+);
 
 app.use('/dist', express.static('dist'));
 
@@ -19,11 +19,14 @@ app.get('/favicon.ico', (req, res) => res.sendStatus(204));
 
 // renderToString로 React의 App 컴포넌트를 렌더링한다.
 app.get('*', (req, res) => {
-  const renderString = renderToString(<App page="home"/>);
-  const result = html.replace(
-    '<div id="root"></div>',
-    `<div id="root">${renderString}</div>`
-    );
+  const parseUrl = url.parse(req.url, true);
+  const page = parseUrl.pathname ? parseUrl.pathname.substr(1) : 'home';
+
+  const renderString = renderToString(<App page="home" />);
+  const initialData = { page };
+  const result = html
+    .replace('<div id="root"></div>', `<div id="root">${renderString}</div>`)
+    .replace('__DATA_FROM_SERVER__', JSON.stringify(initialData));
     res.send(result);
 });
 app.listen(3000);
