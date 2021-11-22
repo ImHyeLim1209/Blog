@@ -52,6 +52,13 @@ export default function Home({ allPostsData }) {
   )
 }
 
+// create-next-app
+// 1. 컴파일과 번들링이 자동으로 된다.
+// 2. 자동 리프레시
+// 3. 서버사이드 렌더링
+// 4. static 파일 지원
+
+
 // import Head from 'next/head'
 // import Layout, { siteTitle } from '../components/layout'
 // import utilStyles from '../styles/utils.module.css'

@@ -1,3 +1,5 @@
+// [id].js를 하면 뒤의 주소에 상관없이 이곳으로 이동하게 된다.
+// posts/xxx
 import { getAllPostIds } from '../../lib/posts';
 
 export default function Post({ postData }) {
