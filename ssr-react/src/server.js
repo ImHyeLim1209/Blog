@@ -24,13 +24,14 @@ app.get('*', (req, res) => {
   const page = parseUrl.pathname ? parseUrl.pathname.substr(1) : 'home';
 
   const sheet = new ServerStyleSheet();
-  const renderString = renderToString(sheet.collectStyles(<App page="home" />));
-    const styles = sheet.getStyleTags();
-
+  const renderString = renderToString(sheet.collectStyles(<App page="home" />)); // React 요소에 스타일 정보 수집을 위한 코드 삽입됨
+  const styles = sheet.getStyleTags(); // 스타일 정보 추출
   const initialData = { page };
+
   const result = html
     .replace('<div id="root"></div>', `<div id="root">${renderString}</div>`)
-    .replace('__DATA_FROM_SERVER__', JSON.stringify(initialData));
+    .replace('__DATA_FROM_SERVER__', JSON.stringify(initialData))
+    .replace('__STYLE_FROM_SERVER', styles);
     res.send(result);
 });
 app.listen(3000);

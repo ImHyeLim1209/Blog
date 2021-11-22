@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import Home from './Home';
 import About from './About';
 import styled from 'styled-components';
+import Icon from './icon.png';
 
 const Container = styled.div`
   background-color: #aaaaaa;
@@ -33,6 +34,7 @@ export default function App({initialPage}) {
         About
       </button>
       <PageComponent />
+      <img src={Icon} />
     </Container>
   )
 }
